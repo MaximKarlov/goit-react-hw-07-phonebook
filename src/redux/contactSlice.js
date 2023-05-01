@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const contactsInitialState = {
-  contact: [],
+  items: [],
   isLoading: false,
   error: null,
 };
@@ -17,7 +18,7 @@ const contactSlice = createSlice({
     fetchingSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      state.contact = action.payload;
+      state.items = action.payload;
     },
     // Виконається якщо HTTP-запит завершився з помилкою
     fetchingError(state, action) {
