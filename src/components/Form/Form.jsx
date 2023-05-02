@@ -23,7 +23,7 @@ export const ContactForm = () => {
         name,
         phone,
       };
-      dispatch(addContacts(newUser));
+      // dispatch(addContacts(newUser));
       e.target.name.value = e.target.number.value = '';
     }
   };
