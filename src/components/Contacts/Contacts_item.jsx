@@ -1,7 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { deleteContacts } from '../../redux/contactOperation';
+import { deleteContact } from '../../redux/contactOperation';
 import ContactCss from '../Contacts/Contacts.module.css';
 
 export const ContactsItem = ({ id, name, number }) => {
@@ -10,11 +10,9 @@ export const ContactsItem = ({ id, name, number }) => {
     <li id={id} key={nanoid} className={ContactCss.contact_item}>
       <p>*</p>
       {name}: <b>{number}</b>
-      <button type="text" className={ContactCss.btn}>
+      <button type="text" className={ContactCss.btn} onClick={() => dispatch(deleteContact(id))}>
         Delete
       </button>
     </li>
   );
 };
-
-// onClick={() => dispatch(deleteContacts(id))}

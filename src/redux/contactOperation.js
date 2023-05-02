@@ -25,61 +25,13 @@ export const addContact = createAsyncThunk('contacts/addContact', async (contact
   }
 });
 
-// export const fetchContacts = () => async dispatch => {
-//   try {
-//     // Індикатор завантаження
-//     dispatch(fetchingInProgress());
-//     // HTTP-запит
-//     const response = await axios.get(`${BASEURL}`);
-//     // Обробка даних
-//     return dispatch(fetchingSuccess(response.data));
-//   } catch (e) {
-//     // Обробка помилки
-//     Notiflix.Notify.failure(e.message);
-//     dispatch(fetchingError(e.message));
-//   }
-// };
-
-// export const addContacts = contact => async dispatch => {
-//   try {
-//     // Індикатор завантаження
-//     dispatch(fetchingInProgress());
-//     // HTTP-запит
-//     const response = await axios.post(`${BASEURL}`, contact);
-//     Notiflix.Notify.success('Contact added');
-//     // Обробка даних
-//     if (response.status === 201) {
-//       dispatch(fetchingInProgress());
-//       // HTTP-запит
-//       const response = await axios.get(`${BASEURL}`);
-//       // Обробка даних
-//       return dispatch(fetchingSuccess(response.data));
-//     }
-//   } catch (e) {
-//     // Обробка помилки
-//     Notiflix.Notify.error(e.message);
-//     dispatch(fetchingError(e.message));
-//   }
-// };
-
-// export const deleteContacts = id => async dispatch => {
-//   try {
-//     // Індикатор завантаження
-//     dispatch(fetchingInProgress());
-//     // HTTP-запит
-//     const response = await axios.delete(`${BASEURL}/${id}`);
-//     Notiflix.Notify.success('Contact deleted successfully');
-//     // Обробка даних
-//     if (response.status === 200) {
-//       dispatch(fetchingInProgress());
-//       // HTTP-запит
-//       const response = await axios.get(`${BASEURL}`);
-//       // Обробка даних
-//       return dispatch(fetchingSuccess(response.data));
-//     }
-//   } catch (e) {
-//     // Обробка помилки
-//     Notiflix.Notify.error(e.message);
-//     dispatch(fetchingError(e.message));
-//   }
-// };
+export const deleteContact = createAsyncThunk('contacts/deleteContact', async (id, { rejectWithValue }) => {
+  try {
+    const { data, status } = await axios.delete(`${BASEURL}/${id}`);
+    if (status === 200) Notiflix.Notify.success('Контакт видалено з бази');
+    return data;
+  } catch (err) {
+    Notiflix.Notify.failure(err.message);
+    return rejectWithValue(err.message);
+  }
+});
