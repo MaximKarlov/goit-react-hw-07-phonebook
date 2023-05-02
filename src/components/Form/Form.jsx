@@ -2,8 +2,8 @@
 // import { addContact, getContacts } from '..//../redux/contactSlice';
 import FormCss from '../Form/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts } from '../../redux/contactOperation';
-import { getContacts } from '../..//redux/contactSelector';
+import { addContact } from '../../redux/contactOperation';
+import { getContacts } from '../../redux/contactSelector';
 
 let newUser = [];
 
@@ -23,7 +23,7 @@ export const ContactForm = () => {
         name,
         phone,
       };
-      // dispatch(addContacts(newUser));
+      dispatch(addContact(newUser));
       e.target.name.value = e.target.number.value = '';
     }
   };

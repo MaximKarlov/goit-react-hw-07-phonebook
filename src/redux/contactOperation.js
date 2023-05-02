@@ -14,6 +14,17 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, { r
   }
 });
 
+export const addContact = createAsyncThunk('contacts/addContact', async (contact, { rejectWithValue }) => {
+  try {
+    const { data, status } = await axios.post(`${BASEURL}`, contact);
+    if (status === 201) Notiflix.Notify.success('Контакт додано');
+    return data;
+  } catch (err) {
+    Notiflix.Notify.failure(err.message);
+    return rejectWithValue(err.message);
+  }
+});
+
 // export const fetchContacts = () => async dispatch => {
 //   try {
 //     // Індикатор завантаження

@@ -33,8 +33,10 @@ export const ContactList = () => {
             <ContactsItem name={name} id={id} key={id} number={phone} />
           ))}
         </ul>
+      ) : filter === '' ? (
+        'Контакти пусті. Будь ласка додайте контакти!!!'
       ) : (
-        'Contact is empty. Please add contact!!!'
+        'Збігів не знайдено'
       )}
     </div>
   );
